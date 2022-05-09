@@ -1,0 +1,16 @@
+{
+    "message": "Login successfully",
+    "status": 202,
+    "user": {
+        "_id": "6271b2b522a26bad5f77dd1a",
+        "name": "Sadmaney Shopnil",
+        "sex": "female",
+        "profilePic": "http://localhost:3030/user1652047216434.png",
+        "isDelete": false,
+        "email": "moontahasidrat@gmail.com",
+        "password": "$2b$10$dN7YKUu3Em8/IrfWLu1UxOCiStGZze3WwFP275OC5xq0y04CGR7Ky",
+        "createdAt": "2022-05-03T22:54:45.228Z",
+        "updatedAt": "2022-05-03T22:54:45.228Z",
+        "__v": 0
+    }
+}

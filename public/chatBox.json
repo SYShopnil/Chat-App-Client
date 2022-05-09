@@ -1,0 +1,16 @@
+{
+    "message": "Chat Found",
+    "status": 202,
+    "chats": [
+        {
+            "_id": "6271b3a2679b79f22a36f54c",
+            "chatName": "Untitled",
+            "latestMessage": "I am fin yeasa what about you?"
+        },
+        {
+            "_id": "6271bfb3ae7a44d90fef8fd3",
+            "chatName": "Untitled",
+            "latestMessage": "Sorry Hello noshin how are you"
+        }
+    ]
+}
