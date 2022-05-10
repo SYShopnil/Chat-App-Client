@@ -8,7 +8,8 @@ import {
     loggedInSuccessful,
     loggedInRequest,
     alreadyLoggedIn,
-    noUserLoggedIn
+    noUserLoggedIn,
+    logoutRequest
 } from "./login/action/action"
 
 //notification loginHandler
@@ -28,7 +29,7 @@ import baseUrl from "../../utils/baseUrl"
 axios.defaults.withCredentials = true
 
 export const AppWrapper = ({children}) => {
-    //====================login global store part start ==============================//
+    //====================login logout global store part start ==============================//
     const router = useRouter ();
     const LoginReducer = loginReducer;
     const LoginInitialState = loginInitialState;
@@ -77,7 +78,23 @@ export const AppWrapper = ({children}) => {
             return false
         }
     }
-    //======================login global store part End =======================================================
+
+    //logout process 
+    const logoutProcess = async () => {
+        const {
+        data: {
+            status,
+            message
+        }
+        } = await axios.get (`${baseUrl}/user/logout`);
+        console.log(status)
+        if (status == 202) {
+            dispatchLogin (logoutRequest ())
+            return true
+        }
+        return false
+    }
+    //======================login logout global store part End =======================================================
     
 
     //======================notification handler part start =========================================//
@@ -99,7 +116,8 @@ export const AppWrapper = ({children}) => {
             loginFailed : (userData) => dispatchLogin(loggedInFailed ()),
             loginProcess: async (email, password) =>  await loggedInProcess (email, password),
             checkSession : async () => await checkLoggedInUser (),
-            toggleNotificationBar: () =>  dispatchNotification (toggleNotificationBar())
+            toggleNotificationBar: () =>  dispatchNotification (toggleNotificationBar()),
+            logoutProcess : async() => await logoutProcess ()
         }
     }
     

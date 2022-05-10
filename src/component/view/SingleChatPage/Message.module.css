@@ -1,0 +1,11 @@
+.sendMessageButtonWrap {
+    position: absolute;
+    right: 4%;
+    top: 46%;
+    z-index: 999999;
+    transition: all 0.2s ease;
+    font-size: 150%;
+}
+.sendMessageButtonWrap:hover {
+    color: #492FFF
+}

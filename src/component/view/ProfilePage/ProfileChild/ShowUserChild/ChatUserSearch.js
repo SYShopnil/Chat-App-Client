@@ -41,11 +41,12 @@ const ChatUserSearch = () => {
               users.map((user, ind) => {
                 const {
                   name,
-                  profilePic: profileImage
+                  profilePic: profileImage,
+                  _id: userId
                 } = user
                 return (
                   <div key = {ind}>
-                      <ShowUser name = {name} profileImage = {profileImage}/>
+                      <ShowUser name = {name} profileImage = {profileImage} userId = {userId}/>
                   </div>
                 )
               })

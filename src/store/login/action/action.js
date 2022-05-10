@@ -2,7 +2,8 @@ import  {LOGGED_IN_FAILED,
     LOGGED_IN_SUCCESSFUL, 
     LOGGED_IN_REQUEST,
     RESTORE_LOGIN_USER_SESSION,
-    UNSUCCESSFULLY_LOGIN_USER_SESSION} from "../actionType/actionType"
+    UNSUCCESSFULLY_LOGIN_USER_SESSION,
+    LOGOUT} from "../actionType/actionType"
 const loggedInFailed = () => {
     return {
         type: LOGGED_IN_FAILED,
@@ -37,11 +38,17 @@ const loggedInRequest = () => {
     }
 }
 
+const logoutRequest = () => {
+    return {
+        type: LOGOUT
+    }
+}
 
 export {
     loggedInFailed,
     loggedInSuccessful,
     loggedInRequest,
     alreadyLoggedIn,
-    noUserLoggedIn
+    noUserLoggedIn,
+    logoutRequest
 }

@@ -1,6 +1,7 @@
 import React from 'react'
 import NotificationBar from '../component/common/NotificationBar/NotificationBar'
 import MainLayoutStyle from  "./MainLayout.module.css"
+import Link from "next/link"
 import {
   UseAppContext
 } from "../store/store"
@@ -21,7 +22,12 @@ const MainLayOut = ({children}) => {
      <div className = {`d-flex justify-center items-center `} style = {{minHeight: "100vh"}}>
        <div class="card p-8 w-10" style= {{width: "55rem"}}>
          {/* Chat app name */}
-        <h1 className = {`card-img-top  text-3xl font-bold h-10 text-center`}>Chat APP</h1>
+        <Link href="/">
+          <a>
+            <h1 className = {`card-img-top  text-3xl font-bold h-10 text-center`}>Chat APP</h1>
+          </a>
+        </Link>
+        
 
         {/* notification sign part */}
         <div className = {`flex justify-end`}>

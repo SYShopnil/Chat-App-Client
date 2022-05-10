@@ -1,11 +1,17 @@
 import React from 'react'
-
+import {useRouter} from "next/router"
 const ShowUser = (
     {
         name,
-        profileImage
+        profileImage,
+        userId
     }
 ) => {
+    const router = useRouter ();
+    const createChatHandler = async (e) => {
+        e.preventDefault();
+        router.push (`/chat/${userId}`)
+    }
   return (
     <section className = {`grid grid-cols-3 gap-2`}>
         {/* profile picture */}
@@ -19,7 +25,10 @@ const ShowUser = (
         </div>
 
         {/* message button */}
-        <button type = "button">
+        <button 
+        type = "button"
+        onClick = {(e) => createChatHandler (e)}
+        >
             <i class="fa-solid fa-message"></i>
         </button>
     </section>

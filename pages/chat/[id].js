@@ -1,5 +1,6 @@
 import React from 'react'
 import {useRouter} from 'next/router'
+import SingleChatView from '../../src/view/SingleChatPage/SingleChatView'
 
 const SingleChat = () => {
   const {
@@ -8,7 +9,9 @@ const SingleChat = () => {
     }
   } = useRouter()
   return (
-    <div>Hello I am chat id: {selectedChatId}</div>
+    <>
+      <SingleChatView/>
+    </>
   )
 }
 

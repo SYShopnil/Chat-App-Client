@@ -1,0 +1,16 @@
+.senderProfilePicWrap {
+    border-radius: 100%;
+}
+
+.senderMessageWrapper {
+    background: #492FFF;
+    width: 127%;
+    padding: 6%;
+    border-radius: 26%;
+    color: #FFF2FF;
+}
+.receiverMessageWrapper {
+    width: 127%;
+    padding: 6%;
+    border-radius: 26%
+}

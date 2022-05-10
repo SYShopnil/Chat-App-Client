@@ -7,13 +7,24 @@ const ChatBox = ({
     const {
         state: {
             loginState: {
-                loggedInUser: {
-                    _id: loggedInUserId
-                },
                 isLoggedIn
             }
         }
     } = UseAppContext ()
+    const loggedInUserId = ""
+    if (isLoggedIn) {
+        const {
+            state: {
+                loginState: {
+                    loggedInUser: {
+                        _id
+                    }
+                }
+            }
+
+        } = UseAppContext ()
+        loggedInUserId = _id
+    }
 
     let showProfilePicture = ""
     let showSenderName = ""
