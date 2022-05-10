@@ -1,4 +1,8 @@
-import  {LOGGED_IN_FAILED, LOGGED_IN_SUCCESSFUL} from "../actionType/actionType"
+import  {LOGGED_IN_FAILED, 
+    LOGGED_IN_SUCCESSFUL, 
+    LOGGED_IN_REQUEST,
+    RESTORE_LOGIN_USER_SESSION,
+    UNSUCCESSFULLY_LOGIN_USER_SESSION} from "../actionType/actionType"
 const loggedInFailed = () => {
     return {
         type: LOGGED_IN_FAILED,
@@ -7,17 +11,37 @@ const loggedInFailed = () => {
 }
 
 const loggedInSuccessful = (data) => {
+    // console.log({data})
     return {
         type: LOGGED_IN_SUCCESSFUL,
         payload: data
     }
 }
 
-const loggedInProcess = async (email, password) => {
-    
+const alreadyLoggedIn = (user) => {
+    return {
+        type: RESTORE_LOGIN_USER_SESSION,
+        payload: user
+    }
 }
+
+const noUserLoggedIn = () => {
+    return {
+        type: UNSUCCESSFULLY_LOGIN_USER_SESSION
+    }
+}
+const loggedInRequest = () => {
+    return {
+        type: LOGGED_IN_REQUEST,
+        payload: null
+    }
+}
+
 
 export {
     loggedInFailed,
-    loggedInSuccessful
+    loggedInSuccessful,
+    loggedInRequest,
+    alreadyLoggedIn,
+    noUserLoggedIn
 }

@@ -1,4 +1,8 @@
-import {LOGGED_IN_SUCCESSFUL, LOGGED_IN_FAILED} from "../actionType/actionType"
+import {LOGGED_IN_SUCCESSFUL, 
+    LOGGED_IN_FAILED, 
+    LOGGED_IN_REQUEST,
+    RESTORE_LOGIN_USER_SESSION,
+    UNSUCCESSFULLY_LOGIN_USER_SESSION} from "../actionType/actionType"
 
 export const loginInitialState = {
     isLoggedIn: false,
@@ -6,7 +10,7 @@ export const loginInitialState = {
     loggedInUser: null
 }
 
-export const loginReducer = (state = initialState, action) => {
+export const loginReducer = (state = loginInitialState, action) => {
     switch (action.type) {
         case LOGGED_IN_SUCCESSFUL: {
             return {
@@ -16,17 +20,38 @@ export const loginReducer = (state = initialState, action) => {
                 loggedInUser: action.payload
             }
         }
-        case  DECREASE : {
-            if (state.count > 0) {
-                return {
-                    ...state,
-                    isLoading: false,
-                    isLoggedIn: false,
-                    loggedInUser: null
-                }
+        case  LOGGED_IN_FAILED : {
+            return {
+                ...state,
+                isLoading: false,
+                isLoggedIn: false,
+                loggedInUser: null
             }
         }
-    
+        case  LOGGED_IN_REQUEST : {
+            return {
+                ...state,
+                isLoading: false,
+                isLoggedIn: false,
+                loggedInUser: null
+            }
+        }
+        case RESTORE_LOGIN_USER_SESSION : {
+            return {
+                ...state,
+                isLoading: false,
+                isLoggedIn: true,
+                loggedInUser: action.payload
+            }
+        }
+        case UNSUCCESSFULLY_LOGIN_USER_SESSION : {
+            return {
+                ...state,
+                isLoading: false,
+                isLoggedIn: false,
+                loggedInUser: null
+            }
+        }
         default:
             return state;
     }

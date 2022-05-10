@@ -4,13 +4,35 @@
     "chats": [
         {
             "_id": "6271b3a2679b79f22a36f54c",
-            "chatName": "Untitled",
+            "members": [
+                {
+                    "_id": "6271a7d1f3e366971dc6e8b8",
+                    "name": "Sadmaney Yeasar",
+                    "profilePic": "http://localhost:3030/user1652047216434.png"
+                },
+                {
+                    "_id": "6271b2b522a26bad5f77dd1a",
+                    "name": "Sadmaney Shopnil",
+                    "profilePic": "http://localhost:3030/user1652047216434.png"
+                }
+            ],
             "latestMessage": "I am fin yeasa what about you?"
         },
         {
-            "_id": "6271bfb3ae7a44d90fef8fd3",
-            "chatName": "Untitled",
-            "latestMessage": "Sorry Hello noshin how are you"
+            "_id": "6271bf7cae7a44d90fef8fc9",
+            "members": [
+                {
+                    "_id": "6271bf3bae7a44d90fef8fc4",
+                    "name": "Noshin Tasnim",
+                    "profilePic": "http://localhost:3030/user1652047216434.png"
+                },
+                {
+                    "_id": "6271a7d1f3e366971dc6e8b8",
+                    "name": "Sadmaney Yeasar",
+                    "profilePic": "http://localhost:3030/user1652047216434.png"
+                }
+            ],
+            "latestMessage": ""
         }
     ]
 }

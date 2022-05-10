@@ -1,0 +1,7 @@
+.barWrapper {
+    position: absolute;
+    right: 4%;
+    z-index: 99999;
+    width: 56%;
+    transition: all 0.5s ease
+}
