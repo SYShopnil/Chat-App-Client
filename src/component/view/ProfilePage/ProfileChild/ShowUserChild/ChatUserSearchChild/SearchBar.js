@@ -1,10 +1,29 @@
 import React from 'react'
 
-const SearchBar = () => {
+const SearchBar = (
+  {
+    searchBy,
+    setSearchBy,
+    searchHandler
+  }
+) => {
   return (
     <div class="input-group mb-3">
-        <input type="text" class="form-control" placeholder="Search User" aria-label="Search User" aria-describedby="button-addon2"/>
-        <button class="btn btn-outline-secondary" type="button" id="button-addon2">Search</button>
+        <input 
+        type="text" 
+        className="form-control" 
+        placeholder="Search User" 
+        aria-label="Search User" 
+        aria-describedby="button-addon2"
+        value = {searchBy}
+        onChange = {(e) => setSearchBy (e.target.value) }
+        />
+        <button 
+        className="btn btn-outline-secondary" 
+        type="button" 
+        id="button-addon2"
+        onClick = {(e) => searchHandler(e)}
+        >Search</button>
     </div>
   )
 }

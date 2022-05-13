@@ -1,8 +1,8 @@
 import React from 'react'
 
-const SingleNotification = () => {
+const SingleNotification = ({data}) => {
   return (
-    <div>SingleNotification</div>
+    <div>{data}</div>
   )
 }
 

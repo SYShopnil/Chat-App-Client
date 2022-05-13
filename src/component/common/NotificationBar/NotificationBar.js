@@ -10,7 +10,8 @@ const NotificationBar = () => {
     state: {
       notificationState: {
         notificationData
-      }
+      },
+      myNotification
     },
     dispatch: {
       toggleNotificationBar
@@ -21,7 +22,7 @@ const NotificationBar = () => {
         <div className="card-header">
             Notification
         </div>
-
+        <div>New Notification: {myNotification}</div>
         {/* it will show all single notification */}
         <div className="card-body">
             {

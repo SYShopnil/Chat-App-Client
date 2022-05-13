@@ -6,4 +6,4 @@ const signUp = () => {
   )
 }
 
-export default signUp
+export default React.memo (signUp)

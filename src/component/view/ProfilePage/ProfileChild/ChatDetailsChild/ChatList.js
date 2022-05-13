@@ -58,7 +58,7 @@ const ChatList = () => {
           <>
             {
               chatlist.map((chat, ind) => {
-                console.log(chat)
+                // console.log(chat)
                 const {
                   members
                 } = chat

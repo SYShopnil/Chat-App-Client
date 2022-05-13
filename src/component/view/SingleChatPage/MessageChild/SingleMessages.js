@@ -1,6 +1,7 @@
 import React, {useState}from 'react'
 import { UseAppContext } from '../../../../store/store';
 import SingleMessageStyle from "./SingleMessage.module.css"
+import socket from "../../../../../utils/socket"
 
 const SingleMessages = ({message}) => {
   const [messageContent, setMessageContent] = useState ({
@@ -13,7 +14,6 @@ const SingleMessages = ({message}) => {
     },
     messageId: message._id
   })
-  let loggedInUserId = "";
   const {
     state: {
       loginState: {
@@ -21,6 +21,7 @@ const SingleMessages = ({message}) => {
       }
     }
   } = UseAppContext ()
+  
   //check who is the sender 
   let senderStyle = "justify-start"
   let senderParagraphStyle = `${SingleMessageStyle.receiverMessageWrapper}`

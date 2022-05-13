@@ -11,4 +11,4 @@ const login = () => {
   )
 }
 
-export default login
+export default React.memo (login)

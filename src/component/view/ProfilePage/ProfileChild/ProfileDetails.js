@@ -24,6 +24,7 @@ const ProfileDetails = () => {
         profilePic,
         email
       } = loginState.loggedInUser
+      // console.log(loginState.loggedInUser)
       setProfileData ({
         name,
         sex,

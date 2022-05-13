@@ -10,6 +10,7 @@ const ShowUser = (
     const router = useRouter ();
     const createChatHandler = async (e) => {
         e.preventDefault();
+        // console.log(`Hello I am from show user`)
         router.push (`/chat/${userId}`)
     }
   return (

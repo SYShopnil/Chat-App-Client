@@ -9,4 +9,4 @@ const registration = () => {
   )
 }
 
-export default registration
+export default React.memo (registration)

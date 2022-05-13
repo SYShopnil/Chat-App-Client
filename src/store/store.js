@@ -1,5 +1,6 @@
-import React, { createContext, useContext, useReducer, useEffect } from "react";
+import React, { createContext, useContext, useReducer, useEffect , useState} from "react";
 import {useRouter} from "next/router"
+
 
 //login handler
 import {loginReducer, loginInitialState} from "./login/reducer/reducer"
@@ -27,6 +28,7 @@ const Provider = AppContext.Provider
 import axios from  "axios"
 import baseUrl from "../../utils/baseUrl"
 axios.defaults.withCredentials = true
+import Test from "../component/test/Test";
 
 export const AppWrapper = ({children}) => {
     //====================login logout global store part start ==============================//
@@ -34,6 +36,10 @@ export const AppWrapper = ({children}) => {
     const LoginReducer = loginReducer;
     const LoginInitialState = loginInitialState;
     const [loginState, dispatchLogin] = useReducer(LoginReducer, LoginInitialState)
+    const [isFirstTimeRender, setIsFirstTimeRender] = useState(false)
+
+    //testing notification part 
+    const [myNotification, setMyNotification] = useState ("")
 
     //login process
     const loggedInProcess = async (email, password) => {
@@ -72,6 +78,7 @@ export const AppWrapper = ({children}) => {
         // console.log(message)
         if (status == 202) { //if logged in user is available
             dispatchLogin (loggedInSuccessful (user));
+            //  console.log({user: user._id})
             return true
         }else {
             dispatchLogin (loggedInFailed ());
@@ -87,7 +94,7 @@ export const AppWrapper = ({children}) => {
             message
         }
         } = await axios.get (`${baseUrl}/user/logout`);
-        console.log(status)
+        // console.log(status)
         if (status == 202) {
             dispatchLogin (logoutRequest ())
             return true
@@ -108,7 +115,8 @@ export const AppWrapper = ({children}) => {
     const contextValue = {
         state: {
             loginState,
-            notificationState
+            notificationState,
+            myNotification
         },
         dispatch: {
             loginRequest: () => dispatchLogin(loggedInRequest()),
@@ -117,18 +125,25 @@ export const AppWrapper = ({children}) => {
             loginProcess: async (email, password) =>  await loggedInProcess (email, password),
             checkSession : async () => await checkLoggedInUser (),
             toggleNotificationBar: () =>  dispatchNotification (toggleNotificationBar()),
-            logoutProcess : async() => await logoutProcess ()
+            logoutProcess : async() => await logoutProcess (),
+            changeNotification: (value) => setMyNotification (value)
         }
     }
     
     //session checker useEffect 
     useEffect (() => {
-        (async () => {
-            const isLoggedIn = await checkLoggedInUser ()
-            if (!isLoggedIn) {
-                router.push ("/login")
-            }
-        })()
+        if (isFirstTimeRender) {
+            (async () => {
+                const isLoggedIn = await checkLoggedInUser ()
+                if (!isLoggedIn) {
+                    router.push ("/login")
+                }
+            })()
+        }
+    }, [isFirstTimeRender])
+
+    useEffect (() => {
+        setIsFirstTimeRender (true)
     }, [])
     return (
         <Provider value = {contextValue}>
@@ -149,3 +164,5 @@ export const AppWrapper = ({children}) => {
 export const UseAppContext = () => {
     return useContext (AppContext)
 } 
+
+

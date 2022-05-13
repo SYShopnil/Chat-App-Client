@@ -15,7 +15,7 @@ const HomePage = () => {
     }
   } = UseAppContext ()
   const router = useRouter ()
-   //session checker useEffect 
+  //  session checker useEffect 
     useEffect (() => {
         (async () => {
             if (isLoggedIn) {
@@ -27,7 +27,7 @@ const HomePage = () => {
     }, [])
   return (
     <>
-      
+      <h1>Loading...</h1>
     </>
   )
 }

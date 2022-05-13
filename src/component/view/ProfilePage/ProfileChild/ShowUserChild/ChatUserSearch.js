@@ -9,26 +9,39 @@ const ChatUserSearch = () => {
   const [users, setUsers] = useState ([])
   const [searchBy, setSearchBy] = useState ("")
   const fetchUserData = async () => {
-    const {data:response} = await axios.post (`${baseUrl}/user/show/all`, searchBy);
+    // console.log(`Hello I am from fetch`)
+    const body = {
+      searchBy
+    }
+    const {data:response} = await axios.post (`${baseUrl}/user/show/all`, body );
      if (response.status == 202) {
        const {
          message,
          users
       } = response
       setUsers (users)
+     }else {
+       setUsers ([])
      }
   
   }
-
+  const searchHandler = (e) => {
+    e.preventDefault ();
+    fetchUserData ();
+  }
   //fetch all user data 
   useEffect (() => {
     fetchUserData ();
-  }, [])
+  }, [searchBy])
   return (
     <section>
       {/* search bar part */}
       <div>
-        <SearchBar />
+        <SearchBar
+          searchBy = {searchBy}
+          setSearchBy = {setSearchBy}
+          searchHandler = {searchHandler}
+        />
       </div>
 
       {/* display all user part */}
