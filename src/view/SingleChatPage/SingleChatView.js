@@ -28,7 +28,9 @@ const SingleChatView = () => {
   //context part 
   const {
     dispatch: {
-      changeNotification
+      changeNotification,
+      addChatIntoList,
+      removeChatFromList
     },
   } = UseAppContext ()
 
@@ -74,6 +76,8 @@ const SingleChatView = () => {
       preserveAspectRatio: "xMidYMid slice",
     },
   };
+
+  
   //fix the two times render bug 
   useEffect (() => {
     setIsFirstRender (true)
@@ -110,11 +114,13 @@ const SingleChatView = () => {
               setMessages (messageDetails)
               setChatId (messageDetails[0].chatId)
               setChatMembers (conversationDetails.members)  
+              addChatIntoList (messageDetails[0].chatId)
             }
             if (status == 201 || status == 404) { //if a new conversion has created
               chat = conversationDetails._id
               setChatId (conversationDetails._id)  
-              setChatMembers (conversationDetails.members)                                
+              setChatMembers (conversationDetails.members)    
+              addChatIntoList (conversationDetails._id)                            
             }
             
           }
@@ -127,6 +133,11 @@ const SingleChatView = () => {
         setIsLoading (false)
       }
   })()
+
+  return () => {
+    console.log(chatId)
+    removeChatFromList (chatId)
+  }
   }, [isMessageFetch, isFirstRender])
   
   //all time active useEffect to maintain the socket server 
@@ -144,8 +155,10 @@ const SingleChatView = () => {
      }
    })
    changeNotification ("A new notification come")
-   socket.on ("startTyping", () => {
-     setIsTyping (true)
+   socket.on ("startTyping", (chatID) => {
+     if (chatId == chatID) {
+       setIsTyping (true)
+     }
    })
    socket.on ("stopTyping", () => {
      setIsTyping (false)

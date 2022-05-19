@@ -1,0 +1,7 @@
+const ADD_NEW_CHAT_ID = "ADD_NEW_CHAT_ID"
+const REMOVE_CHAT_ID = "REMOVE_CHAT_ID"
+
+export {
+    ADD_NEW_CHAT_ID,
+    REMOVE_CHAT_ID
+}

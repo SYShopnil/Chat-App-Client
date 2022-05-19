@@ -10,14 +10,14 @@ const MainLayOut = ({children}) => {
   const {
     state: {
       notificationState: {
-        isShow
+        isShow,
+        notificationData
       }
     },
     dispatch: {
       toggleNotificationBar
     }
   } = UseAppContext () //get notification data from global state
-
   return (
      <div className = {`d-flex justify-center items-center `} style = {{minHeight: "100vh"}}>
        <div class="card p-8 w-10" style= {{width: "55rem"}}>
@@ -31,7 +31,7 @@ const MainLayOut = ({children}) => {
 
         {/* notification sign part */}
         <div className = {`flex justify-end`}>
-          <div className = {`${MainLayoutStyle.notificationWrapper}`}>1</div>
+          <div className = {`${MainLayoutStyle.notificationWrapper}`}>{notificationData.length}</div>
           <i className= {`fa-solid fa-bell text-2xl`} onClick = {(e) => toggleNotificationBar () }></i>
         </div>
 

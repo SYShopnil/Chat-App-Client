@@ -1,5 +1,6 @@
 import React from 'react'
 import NotificationBarStyle from "./NotificationBar.module.css"
+import Link from "next/link"
 import {
   UseAppContext
 } from "../../../store/store"
@@ -22,14 +23,25 @@ const NotificationBar = () => {
         <div className="card-header">
             Notification
         </div>
-        <div>New Notification: {myNotification}</div>
         {/* it will show all single notification */}
         <div className="card-body">
             {
               notificationData.length 
               ? 
               <>
-                <SingleNotification/>
+                {
+                  notificationData.map ((notification, ind) => {
+                    return (
+                      <div key = {ind}>
+                        <Link href = {notification.link}>
+                           <a >
+                             <SingleNotification data = {notification}/>
+                           </a>
+                        </Link>
+                      </div>
+                    )
+                  })
+                }
               </>
               :
               <h1>No Notification</h1>

@@ -19,8 +19,19 @@ import {
     notificationInitialState
 } from "./notification/reducer"
 import {
-    toggleNotificationBar
+    toggleNotificationBar,
+    newNotificationCome
 } from "./notification/action"
+
+//chat selection import part
+import {
+    chatAddPartInitialState,
+    chatSelectionReducer
+} from "./messageSelection/reducer"
+import  {
+    addNewChatIntoList,
+    removeChatIdFromList
+} from "./messageSelection/action"
 
 //context api part
 const AppContext = createContext (null);
@@ -108,15 +119,26 @@ export const AppWrapper = ({children}) => {
     const NotificationReducer = notificationHandlerReducer;
     const NotificationInitialState = notificationInitialState;
     const [notificationState, dispatchNotification] = useReducer(NotificationReducer, NotificationInitialState)
+    const newNotificaitonCome = async (notificationData) => {
 
+    }
     //====================== notification handler part End =======================================================
+
+
+
+    //================================ Chat selection id part ===========================//
+    const chatReducer = chatSelectionReducer
+    const chatInitialState = chatAddPartInitialState
+
+    const [selectedChat, dispatchChatHandler] = useReducer (chatSelectionReducer,chatAddPartInitialState )
 
     //My Send Data
     const contextValue = {
         state: {
             loginState,
             notificationState,
-            myNotification
+            myNotification,
+            selectedChat: selectedChat.selectedChatId
         },
         dispatch: {
             loginRequest: () => dispatchLogin(loggedInRequest()),
@@ -126,7 +148,10 @@ export const AppWrapper = ({children}) => {
             checkSession : async () => await checkLoggedInUser (),
             toggleNotificationBar: () =>  dispatchNotification (toggleNotificationBar()),
             logoutProcess : async() => await logoutProcess (),
-            changeNotification: (value) => setMyNotification (value)
+            changeNotification: (value) => setMyNotification (value),
+            addChatIntoList : (chatId) => dispatchChatHandler (addNewChatIntoList (chatId)),
+            removeChatFromList: (chatId) => dispatchChatHandler (removeChatIdFromList (chatId)),
+            newNotificationCome: async (notificationData) => dispatchNotification (await newNotificationCome (notificationData))
         }
     }
     
